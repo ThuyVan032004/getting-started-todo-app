@@ -12,7 +12,7 @@ pipeline {
                     // Ensure the build context is set correctly
                     // def buildContext = 'E:/Errands/app'
                     // Build the Docker image
-                    def image = docker.build("vando2004/app-backend", "-f ${dockerFilePath}")
+                    def image = docker.build("vando2004/app-backend", "-f Dockerfile ${dockerFilePath}")
                     // Run the Docker container
                     docker.image("vando2004/app-backend").run('-d -p 3030:3030')
                 }
