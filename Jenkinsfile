@@ -1,9 +1,7 @@
 pipeline {
     agent {
         docker {
-            image {
-                'vando2004/app-backend:latest'
-            }
+            image 'vando2004/app-backend:latest'
         }
     }
     
