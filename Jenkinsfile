@@ -1,19 +1,14 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'vando2004/app-backend:latest'
+        }
+    }
     
     stages {
         stage('Dev') {
             steps {
-                script {
-                    // Define the path to the Dockerfile
-                    def dockerFilePath = 'E:/Errands/app/Dockerfile'
-                    // Ensure the build context is set correctly
-                    def buildContext = 'E:/Errands/app'
-                    // Build the Docker image
-                    def image = docker.build("vando2004/app-backend", "-f ${dockerFilePath} ${buildContext}")
-                    // Run the Docker container
-                    docker.image("vando2004/app-backend").run('-d -p 3030:3030')
-                }
+                git 'https://github.com/ThuyVan032004/getting-started-todo-app.git'
             }
         }
     }
