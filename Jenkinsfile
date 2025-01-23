@@ -1,11 +1,6 @@
 pipeline {
-    agent {
-        docker {
-            image 'vando2004/jenkins-tutorial:latest'
-            reuseNode true
-        }
-    }
-
+    agent any
+    
     stages {
         stage('Checkout') {
             steps {
