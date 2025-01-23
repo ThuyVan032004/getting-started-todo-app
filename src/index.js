@@ -16,7 +16,7 @@ app.delete('/items/:id', deleteItem);
 
 const port = 5080
 db.init().then(() => {
-    app.listen(port, () => console.log(`Listening on port ${port}%%%`));
+    app.listen(port, () => console.log(`Listening on port ${port}%%%%5`));
 }).catch((err) => {
     console.error(err);
     process.exit(1);
