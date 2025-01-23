@@ -1,18 +1,15 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'vando2004/jenkins-tutorial:latest'
+            reuseNode true
+        }
+    }
+
     stages {
         stage('Checkout') {
             steps {
                 git 'https://github.com/ThuyVan032004/getting-started-todo-app.git'
-            }
-        }
-        
-        stage('Dev') {
-            agent {
-                docker {
-                    image 'vando2004/jenkins-tutorial:latest'
-                    reuseNode true
-                }
             }
         }
         
