@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     def buildContext = '.'
-                    sh 'docker build -t vando2004/jenkins-tutorial:latest -f Dockerfile ' + buildContext
+                    def image = docker.build('vando2004/jenkins-tutorial:latest', '-f Dockerfile ' + buildContext)
                 }
             }
         }
