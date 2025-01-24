@@ -8,16 +8,20 @@ pipeline {
             }
         }
         
-        stage('Run Docker Container') {
-            agent {
-                docker {
-                    image 'vando2004/jenkins-tutorial:latest'
-                    reuseNode true
-                }
-            }
+        stage('Build Docker Image') {
             steps {
                 script {
-                    docker.image('vando2004/jenkins-tutorial:latest').run('-p 9000:9000 -w .')
+                    def buildContext = '.'
+                    sh 'docker build -t vando2004/jenkins-tutorial:latest -f Dockerfile ' + buildContext
+                }
+            }
+        }
+        
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    sh 'docker-compose down'
+                    sh 'docker-compose up -d'
                 }
             }
         }

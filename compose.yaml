@@ -1,0 +1,8 @@
+version: '1.0'
+services:
+  app:
+    image: vando2004/jenkins-tutorial:latest
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./app:/app
