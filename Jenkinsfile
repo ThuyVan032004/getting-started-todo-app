@@ -8,14 +8,19 @@ pipeline {
             }
         }
         
-        stage('Build and Run in Existing Container') {
+        stage('Build Docker Image') {
             steps {
                 script {
-                    def buildContext = 'E:/Errands/app'
-                    def image = docker.build('vando2004/jenkins-tutorial:latest', '-f Dockerfile .')
-                    docker.image('vando2004/jenkins-tutorial:latest').inside {
-                        image.run()
-                    }
+                    def buildContext = '.'
+                    def image = docker.build('vando2004/jenkins-tutorial:latest', '-f Dockerfile ' + buildContext)
+                }
+            }
+        }
+        
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    docker.image('vando2004/jenkins-tutorial:latest').run('-p 9000:9000')
                 }
             }
         }
