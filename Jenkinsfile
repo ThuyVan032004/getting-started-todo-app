@@ -20,9 +20,9 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    bat 'docker stop cicd-container || true'
-                    bat 'docker rm cicd-container || true'
-                    bat 'docker run -d -p 9000:9000 --name cicd-container vando2004/jenkins-tutorial:latest'
+                    bat 'docker stop strange_banzai || true'
+                    bat 'docker rm strange_banzai || true'
+                    bat 'docker run -d -p 9000:9000 --name strange_banzai vando2004/jenkins-tutorial:latest'
                 }
             }
         }
