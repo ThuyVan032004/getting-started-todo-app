@@ -14,9 +14,9 @@ app.post('/items', addItem);
 app.put('/items/:id', updateItem);
 app.delete('/items/:id', deleteItem);
 
-const port = 5080
+const port = 5060
 db.init().then(() => {
-    app.listen(port, () => console.log(`Listening on port ${port}`));
+    app.listen(port, () => console.log(`Listening on port ${port} ahihi`));
 }).catch((err) => {
     console.error(err);
     process.exit(1);
