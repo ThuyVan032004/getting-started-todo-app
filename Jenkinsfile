@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     def buildContext = '.'
-                    def image = docker.build('vando2004/jenkins-tutorial:latest', '-f Dockerfile ' + buildContext)
+                    bat 'docker build -t vando2004/jenkins-tutorial:latest -f Dockerfile ' + buildContext
                 }
             }
         }
@@ -20,8 +20,9 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    bat 'docker-compose down'
-                    bat 'docker-compose up -d'
+                    bat 'docker stop cicd-container || true'
+                    bat 'docker rm cicd-container || true'
+                    bat 'docker run -d -p 9000:9000 --name cicd-container vando2004/jenkins-tutorial:latest'
                 }
             }
         }
