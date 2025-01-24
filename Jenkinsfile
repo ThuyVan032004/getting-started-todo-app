@@ -8,16 +8,13 @@ pipeline {
             }
         }
         
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    def buildContext = '.'
-                    def image = docker.build('vando2004/jenkins-tutorial:latest', '-f Dockerfile ' + buildContext)
+        stage('Run Docker Container') {
+            agent {
+                docker {
+                    image 'vando2004/jenkins-tutorial:latest'
+                    reuseNode true
                 }
             }
-        }
-        
-        stage('Run Docker Container') {
             steps {
                 script {
                     docker.image('vando2004/jenkins-tutorial:latest').run('-p 9000:9000')
