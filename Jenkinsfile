@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
@@ -11,7 +11,8 @@ pipeline {
         stage('Build and Run in Existing Container') {
             steps {
                 script {
-                    def image = docker.build('vando2004/jenkins-tutorial:latest')
+                    def buildContext = 'E:/Errands/app'
+                    def image = docker.build('vando2004/jenkins-tutorial:latest', '-f ${buildContext}')
                     docker.image('vando2004/jenkins-tutorial:latest').inside {
                         image.run()
                     }
