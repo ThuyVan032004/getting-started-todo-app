@@ -17,7 +17,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.image('vando2004/jenkins-tutorial:latest').run('-p 9000:9000')
+                    docker.image('vando2004/jenkins-tutorial:latest').run('-p 9000:9000 -w .')
                 }
             }
         }
